@@ -3,8 +3,8 @@
  *
  * @source: https://github.com/thomasleplus/crazy-santa/blob/master/crazy-santa.js
  *
- * @licstart  The following is the entire license notice for the 
- *  JavaScript code in this page.
+ * @licstart The following is the entire license notice for the 
+ * JavaScript code in this page.
  *
  * Copyright (C) 2014 Thomas Leplus
  *
@@ -23,7 +23,11 @@
  * section 4, provided you include this license notice and a URL
  * through which recipients can access the Corresponding Source.
  *
- * @licend  The above is the entire license notice
- * for the JavaScript code in this page.
+ * @licend  The above is the entire license notice for the
+ * JavaScript code in this page.
  *
  */
+
+function start() {
+  
+}
