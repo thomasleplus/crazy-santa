@@ -26,6 +26,11 @@
  * JavaScript code in this page.
  *
  */
-$( document ).ready(function() {
+
+function start() {
   $( "#main_content" ).html("Hello world!");
+}
+
+$( document ).ready(function() {
+  start();
 });
