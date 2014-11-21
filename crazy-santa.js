@@ -28,5 +28,5 @@
  */
 
 function start() {
-  $("#main_content").html("");
+  $("#main_content").html("Hello world!");
 }
