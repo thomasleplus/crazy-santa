@@ -29,5 +29,5 @@
  */
 
 function start() {
-  
+  $(#main_content).html("");
 }
