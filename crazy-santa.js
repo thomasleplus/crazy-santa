@@ -1,4 +1,3 @@
-
 /**
  *
  * @source: https://github.com/thomasleplus/crazy-santa/blob/master/crazy-santa.js
