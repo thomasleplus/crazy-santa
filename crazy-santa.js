@@ -27,5 +27,5 @@
  *
  */
 $( document ).ready(function() {
-  $("#main_content").html("Hello world!");
+  $( "#main_content" ).html("Hello world!");
 });
