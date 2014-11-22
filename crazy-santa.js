@@ -45,6 +45,7 @@ function start() {
   var output = '';
   var step = getParam('step');
   var npart = getParam('npart');
+  var chosen = getParam('chosen');
   if (step == null || step == 0) {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="step" value="1" />';
