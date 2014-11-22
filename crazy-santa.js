@@ -45,7 +45,12 @@ function start() {
   var output;
   var step = getParam("step");
   if (step == null || step == 0) {
-    output = "Hello world!";
+    output += '<div class="content">How many people are participating?</div>';
+    output += '<form class="form" method="get" action="">';
+    output += '<input type="text" name="npart"/>';
+    output += '<input type="hidden" name="step" value="1" />';
+    output += '<input type="submit" value="Next"/>';
+    output += '</form>';
   } else {
     output = "Sorry the script encountered an unexpected error!";
   }
