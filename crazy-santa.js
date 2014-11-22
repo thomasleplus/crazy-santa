@@ -43,14 +43,23 @@ function getParam(name) {
 
 function start() {
   var output = '';
-  var step = getParam("step");
+  var step = getParam('step');
+  var npart = getParam('npart');
   if (step == null || step == 0) {
     output += '<form class="form" method="get" action="">';
+    output += '<input type="hidden" name="step" value="1" />';
     output += 'How many people are participating?';
     output += '<input type="text" name="npart"/>';
-    output += '<input type="hidden" name="step" value="1" />';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
+  } else if (chosen == null || chosen == 'false') {
+    output += '<form class="form" method="get" action="">';
+    output += '<input type="hidden" name="step" value="' + step + '" />';
+    output += '<input type="hidden" name="chosen" value="true" />';
+    output += 'Participant #' + step + ' may pick a gift and open it.';
+    output += '<input type="submit" value="Done"/>';
+    output += '</form>';
+  } else if (chosen == 'true') {
   } else {
     output += 'Sorry the script encountered an unexpected error!';
   }
