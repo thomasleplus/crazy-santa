@@ -57,8 +57,12 @@ function start() {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="step" value="' + step + '" />';
     output += '<input type="hidden" name="chosen" value="true" />';
-    for (i = 0; i < step; i++) {
-        output += '<input type="hidden" name="swap' + i + '" value="' + getParam('swap' + i) + '" />';
+    for (i = 1; i < step; i++) {
+        var swap = getParam('swap' + i);
+        if (swap == null || swap != 'true') {
+            swap = 'false';
+        }
+        output += '<input type="hidden" name="swap' + i + '" value="' + swap + '" />';
     }
     output += 'Participant #' + step + ' may pick a gift and open it.';
     output += '<input type="submit" value="Done"/>';
