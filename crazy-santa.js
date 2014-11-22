@@ -56,7 +56,6 @@ function start() {
     output += '</form>';
   } else if (chosen == null || chosen == 'false') {
     output += '<form class="form" method="get" action="">';
-    output += '<input type="hidden" name="chosen" value="true" />';
     var next = 0;
     for (i = 1; i < step; i++) {
         var s = getParam('swap' + i);
@@ -69,8 +68,10 @@ function start() {
         output += '<input type="hidden" name="swap' + i + '" value="' + s + '" />';
     }
     if (next == 0) {
+        output += '<input type="hidden" name="chosen" value="false" />';
         output += '<input type="hidden" name="step" value="' + (step + 1) + '" />';
     } else {
+        output += '<input type="hidden" name="chosen" value="true" />';
         output += '<input type="hidden" name="swap" value="' + next + '" />';
         output += '<input type="hidden" name="step" value="' + step + '" />';
     }
@@ -79,7 +80,6 @@ function start() {
     output += '</form>';
   } else if (chosen == 'true') {
     output += '<form class="form" method="get" action="">';
-    output += '<input type="hidden" name="chosen" value="true" />';
     var next = 0;
     for (i = 1; i < step; i++) {
         if (i != swap) {
@@ -94,8 +94,10 @@ function start() {
         }
     }
     if (next == 0) {
+        output += '<input type="hidden" name="chosen" value="false" />';
         output += '<input type="hidden" name="step" value="' + (step + 1) + '" />';
     } else {
+        output += '<input type="hidden" name="chosen" value="true" />';
         output += '<input type="hidden" name="swap" value="' + next + '" />';
         output += '<input type="hidden" name="step" value="' + step + '" />';
     }
