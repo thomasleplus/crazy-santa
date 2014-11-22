@@ -43,10 +43,19 @@ function getParam(name) {
 
 function start() {
   var output = '';
-  var step = parseInt(getParam('step'));
-  var npart = parseInt(getParam('npart'));
+  var step = getParam('step');
+  if (step != null) {
+    step = parseInt(step);
+  }
+  var npart = getParam('npart');
+  if (npart != null) {
+    npart = parseInt(npart);
+  }
   var chosen = getParam('chosen');
-  var swap = parseInt(getParam('swap'));
+  var swap = getParam('swap');
+  if (swap != null) {
+    swap = parseInt(swap);
+  }
   if (step == null || step == 0) {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="step" value="1" />';
