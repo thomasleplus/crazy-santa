@@ -111,7 +111,8 @@ function start() {
         output += '<input type="hidden" name="current" value="' + current + '" />';
     }
     output += 'Does participant #' + swap + ' want to swap gift with participant #' + current + '? ';
-    output += '<input type="submit" value="Done"/>';
+    output += '<input type="submit" name="swap' + swap + '" value="Yes"/>';
+    output += '<input type="submit" name="swap' + swap + '" value="No"/>';
     output += '</form>';
   }
   $( "#main_content" ).html(output);
