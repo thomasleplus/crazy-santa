@@ -43,78 +43,78 @@ function getParam(name) {
 
 function start() {
   var output = '';
-  var curr = getParam('curr');
-  if (curr != null) {
-    curr = parseInt(curr);
+  var cpart = getParam('cpart');
+  if (cpart != null) {
+    cpart = parseInt(cpart);
   }
   var npart = getParam('npart');
   if (npart != null) {
     npart = parseInt(npart);
   }
   var chosen = getParam('chosen');
-  var swap = getParam('swap');
-  if (swap != null) {
-    swap = parseInt(swap);
+  var cswap = getParam('cswap');
+  if (cswap != null) {
+    cswap = parseInt(cswap);
   }
   if (npart == null) {
     output += '<form class="form" method="get" action="">';
-    output += '<input type="hidden" name="curr" value="1" />';
+    output += '<input type="hidden" name="cpart" value="1" />';
     output += 'How many people are participating? ';
     output += '<input type="text" name="npart"/>';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
-  } else if (chosen == null || chosen == 'false') {
+  } else if (chosen == null || chosen == 'False') {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="npart" value="' + npart + '" />';
     var next = 0;
-    for (i = 1; i < curr; i++) {
-        var s = getParam('swap' + i);
-        if (s == null || s != 'Yes') {
-            s = 'False';
+    for (i = 1; i < cpart; i++) {
+        var swapped = getParam('swapped' + i);
+        if (swapped == null || swapped != 'Yes') {
+            swapped = 'No';
             if (i > next) {
                 next = i;
             }
         }
-        output += '<input type="hidden" name="swap' + i + '" value="' + s + '" />';
+        output += '<input type="hidden" name="swapped' + i + '" value="' + swapped + '" />';
     }
     if (next == 0) {
-        output += '<input type="hidden" name="chosen" value="false" />';
-        output += '<input type="hidden" name="curr" value="' + (curr + 1) + '" />';
+        output += '<input type="hidden" name="chosen" value="False" />';
+        output += '<input type="hidden" name="cpart" value="' + (cpart + 1) + '" />';
     } else {
-        output += '<input type="hidden" name="chosen" value="true" />';
-        output += '<input type="hidden" name="swap" value="' + next + '" />';
-        output += '<input type="hidden" name="curr" value="' + curr + '" />';
+        output += '<input type="hidden" name="chosen" value="True" />';
+        output += '<input type="hidden" name="cswap" value="' + next + '" />';
+        output += '<input type="hidden" name="cpart" value="' + cpart + '" />';
     }
-    output += 'Participant #' + curr + ' may pick a gift and open it. ';
+    output += 'Participant #' + cpart + ' may pick a gift and open it. ';
     output += '<input type="submit" value="Done"/>';
     output += '</form>';
-  } else if (chosen == 'true') {
+  } else if (chosen == 'True') {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="npart" value="' + npart + '" />';
     var next = 0;
-    for (i = 1; i < curr; i++) {
-        if (i != swap) {
-            var s = getParam('swap' + i);
-            if (s == null || s != 'Yes') {
-                s = 'No';
-                if (i > next && i < swap) {
+    for (i = 1; i < cpart; i++) {
+        if (i != cswap) {
+            var swapped = getParam('swapped' + i);
+            if (swapped == null || swapped != 'Yes') {
+                swapped = 'No';
+                if (i > next && i < cswap) {
                     next = i;
                 }
             }
-            output += '<input type="hidden" name="swap' + i + '" value="' + s + '" />';
+            output += '<input type="hidden" name="swapped' + i + '" value="' + swapped + '" />';
         }
     }
     if (next == 0) {
-        output += '<input type="hidden" name="chosen" value="false" />';
-        output += '<input type="hidden" name="curr" value="' + (curr + 1) + '" />';
+        output += '<input type="hidden" name="chosen" value="False" />';
+        output += '<input type="hidden" name="cpart" value="' + (cpart + 1) + '" />';
     } else {
-        output += '<input type="hidden" name="chosen" value="true" />';
-        output += '<input type="hidden" name="swap" value="' + next + '" />';
-        output += '<input type="hidden" name="curr" value="' + curr + '" />';
+        output += '<input type="hidden" name="chosen" value="True" />';
+        output += '<input type="hidden" name="cswap" value="' + next + '" />';
+        output += '<input type="hidden" name="cpart" value="' + cpart + '" />';
     }
-    output += 'Does participant #' + swap + ' want to swap gift with participant #' + curr + '? ';
-    output += '<input type="submit" name="swap' + swap + '" value="Yes"/>';
-    output += '<input type="submit" name="swap' + swap + '" value="No"/>';
+    output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '? ';
+    output += '<input type="submit" name="swapped' + cswap + '" value="Yes"/>';
+    output += '<input type="submit" name="swapped' + cswap + '" value="No"/>';
     output += '</form>';
   }
   $( "#main_content" ).html(output);
