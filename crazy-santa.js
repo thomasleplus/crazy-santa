@@ -56,7 +56,7 @@ function start() {
   if (swap != null) {
     swap = parseInt(swap);
   }
-  if (current == null || current == 0) {
+  if (npart == null) {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="current" value="1" />';
     output += 'How many people are participating? ';
@@ -65,6 +65,7 @@ function start() {
     output += '</form>';
   } else if (chosen == null || chosen == 'false') {
     output += '<form class="form" method="get" action="">';
+    output += '<input type="hidden" name="npart" value="' + npart + '" />';
     var next = 0;
     for (i = 1; i < current; i++) {
         var s = getParam('swap' + i);
@@ -89,6 +90,7 @@ function start() {
     output += '</form>';
   } else if (chosen == 'true') {
     output += '<form class="form" method="get" action="">';
+    output += '<input type="hidden" name="npart" value="' + npart + '" />';
     var next = 0;
     for (i = 1; i < current; i++) {
         if (i != swap) {
