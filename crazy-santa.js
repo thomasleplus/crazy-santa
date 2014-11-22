@@ -34,7 +34,7 @@ function getParam(name) {
     var params = window.location.search.substring(1).split('&');
     for (var i = 0; i < params.length; i++) {
         var param = params[i].split('=');
-        if (param[0] == name) {
+        if (param[0] == name && param[1].match(/^[a-zA-Z0-9]*$/)) {
             return param[1];
         }
     }
@@ -57,12 +57,13 @@ function start() {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="step" value="' + step + '" />';
     output += '<input type="hidden" name="chosen" value="true" />';
+    for (i = 0; i < step; i++) {
+        output += '<input type="hidden" name="swap' + i + '" value="' + getParam('swap' + i) + '" />';
+    }
     output += 'Participant #' + step + ' may pick a gift and open it.';
     output += '<input type="submit" value="Done"/>';
     output += '</form>';
   } else if (chosen == 'true') {
-  } else {
-    output += 'Sorry the script encountered an unexpected error!';
   }
   $( "#main_content" ).html(output);
 }
