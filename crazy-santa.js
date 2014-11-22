@@ -68,8 +68,8 @@ function start() {
     var next = 0;
     for (i = 1; i < current; i++) {
         var s = getParam('swap' + i);
-        if (s == null || s != 'true') {
-            s = 'false';
+        if (s == null || s != 'Yes') {
+            s = 'False';
             if (i > next) {
                 next = i;
             }
@@ -93,8 +93,8 @@ function start() {
     for (i = 1; i < current; i++) {
         if (i != swap) {
             var s = getParam('swap' + i);
-            if (s == null || s != 'true') {
-                s = 'false';
+            if (s == null || s != 'Yes') {
+                s = 'No';
                 if (i > next && i < swap) {
                     next = i;
                 }
