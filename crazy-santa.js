@@ -43,9 +43,9 @@ function getParam(name) {
 
 function start() {
   var output = '';
-  var current = getParam('current');
-  if (current != null) {
-    current = parseInt(current);
+  var curr = getParam('curr');
+  if (curr != null) {
+    curr = parseInt(curr);
   }
   var npart = getParam('npart');
   if (npart != null) {
@@ -58,7 +58,7 @@ function start() {
   }
   if (npart == null) {
     output += '<form class="form" method="get" action="">';
-    output += '<input type="hidden" name="current" value="1" />';
+    output += '<input type="hidden" name="curr" value="1" />';
     output += 'How many people are participating? ';
     output += '<input type="text" name="npart"/>';
     output += '<input type="submit" value="Next"/>';
@@ -67,7 +67,7 @@ function start() {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="npart" value="' + npart + '" />';
     var next = 0;
-    for (i = 1; i < current; i++) {
+    for (i = 1; i < curr; i++) {
         var s = getParam('swap' + i);
         if (s == null || s != 'Yes') {
             s = 'False';
@@ -79,20 +79,20 @@ function start() {
     }
     if (next == 0) {
         output += '<input type="hidden" name="chosen" value="false" />';
-        output += '<input type="hidden" name="current" value="' + (current + 1) + '" />';
+        output += '<input type="hidden" name="curr" value="' + (curr + 1) + '" />';
     } else {
         output += '<input type="hidden" name="chosen" value="true" />';
         output += '<input type="hidden" name="swap" value="' + next + '" />';
-        output += '<input type="hidden" name="current" value="' + current + '" />';
+        output += '<input type="hidden" name="curr" value="' + curr + '" />';
     }
-    output += 'Participant #' + current + ' may pick a gift and open it. ';
+    output += 'Participant #' + curr + ' may pick a gift and open it. ';
     output += '<input type="submit" value="Done"/>';
     output += '</form>';
   } else if (chosen == 'true') {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="npart" value="' + npart + '" />';
     var next = 0;
-    for (i = 1; i < current; i++) {
+    for (i = 1; i < curr; i++) {
         if (i != swap) {
             var s = getParam('swap' + i);
             if (s == null || s != 'Yes') {
@@ -106,13 +106,13 @@ function start() {
     }
     if (next == 0) {
         output += '<input type="hidden" name="chosen" value="false" />';
-        output += '<input type="hidden" name="current" value="' + (current + 1) + '" />';
+        output += '<input type="hidden" name="curr" value="' + (curr + 1) + '" />';
     } else {
         output += '<input type="hidden" name="chosen" value="true" />';
         output += '<input type="hidden" name="swap" value="' + next + '" />';
-        output += '<input type="hidden" name="current" value="' + current + '" />';
+        output += '<input type="hidden" name="curr" value="' + curr + '" />';
     }
-    output += 'Does participant #' + swap + ' want to swap gift with participant #' + current + '? ';
+    output += 'Does participant #' + swap + ' want to swap gift with participant #' + curr + '? ';
     output += '<input type="submit" name="swap' + swap + '" value="Yes"/>';
     output += '<input type="submit" name="swap' + swap + '" value="No"/>';
     output += '</form>';
