@@ -42,7 +42,7 @@ function getParam(name) {
 }
 
 function validateNPart() {
-    var npart = document.forms["santa"]["npart"].value;
+    var npart = $( "#npart" ).val();
     if (npart == null || !npart.match(/^[1-9][0-9]*$/)) {
         alert("Please type a valid number of participants!");
         return false;
