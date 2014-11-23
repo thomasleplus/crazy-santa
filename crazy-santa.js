@@ -43,13 +43,13 @@ function getParam(name) {
 
 function start() {
   var output = '';
-  var cpart = getParam('cpart');
-  if (cpart != null) {
-    cpart = parseInt(cpart);
-  }
   var npart = getParam('npart');
   if (npart != null) {
     npart = parseInt(npart);
+  }
+  var cpart = getParam('cpart');
+  if (cpart != null) {
+    cpart = parseInt(cpart);
   }
   var chosen = getParam('chosen');
   var cswap = getParam('cswap');
@@ -63,6 +63,8 @@ function start() {
     output += '<input type="text" name="npart"/>';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
+  } else if (cpart > npart) {
+    output += 'Finally participant #' + npart + ' can swap gift with participant #1. That\'s all folks!';
   } else if (chosen == null || chosen == 'False') {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="npart" value="' + npart + '" />';
