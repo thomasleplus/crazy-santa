@@ -42,9 +42,9 @@ function getParam(name) {
 }
 
 function validateNPart() {
-    var npart = $( "#npart" ).val();
+    var npart = document.getElementById('npart').value;
     if (npart == null || !npart.match(/^[1-9][0-9]*$/)) {
-        alert("Please type a valid number of participants!");
+        alert('Please type a valid number of participants!');
         return false;
     }
 }
@@ -130,9 +130,9 @@ function start() {
     output += '<input type="submit" name="swapped' + cswap + '" id="swapNo" value="No"/>';
     output += '</form>';
   }
-  $( "#main_content" ).html(output);
+  document.getElementById('main_content').innerHTML = output;
 }
 
-$( document ).ready(function() {
+document.addEventListener('DOMContentLoaded', function(event) { 
   start();
 });
