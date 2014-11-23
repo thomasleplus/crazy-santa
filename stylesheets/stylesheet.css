@@ -237,6 +237,9 @@ form {
   text-align: justify;
 }
 
+form input {
+  font-size: 18px;
+}
 
 /* GENERAL ELEMENT TYPE STYLES */
 
