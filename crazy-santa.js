@@ -42,7 +42,7 @@ function getParam(name) {
 }
 
 function validateNPart() {
-    var npart = document.forms["form"]["npart"].value;
+    var npart = document.forms["santa"]["npart"].value;
     if (npart == null || !npart.match(/^[1-9][0-9]*$/)) {
         alert("Please type a valid number of participants!");
         return false;
@@ -65,18 +65,18 @@ function start() {
     cswap = parseInt(cswap);
   }
   if (npart == null) {
-    output += '<form class="form" method="get" action="" onsubmit="return validateNPart()">';
+    output += '<form name="santa" id="santa" method="get" action="" onsubmit="return validateNPart()">';
     output += '<input type="hidden" name="cpart" value="1" />';
     output += 'Before we start, write a number for each participant on pieces of paper and ask each participant to blindly draw one of the pieces of paper from a hat. When you are ready, tell me how many people are participating?<br/>';
     output += '<input type="text" name="npart"/>';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
   } else if (cpart > npart) {
-    output += '<form class="form" method="get" action="">';
+    output += '<form name="santa" id="santa" method="get" action="">';
     output += 'Finally participant #' + npart + ' can swap gift with participant #1.<br/>That\'s all folks!';
     output += '</form>';
   } else if (chosen == null || chosen == 'False') {
-    output += '<form class="form" method="get" action="">';
+    output += '<form name="santa" id="santa" method="get" action="">';
     output += '<input type="hidden" name="npart" value="' + npart + '" />';
     var next = 0;
     for (i = 1; i < cpart; i++) {
@@ -101,7 +101,7 @@ function start() {
     output += '<input type="submit" value="Done"/>';
     output += '</form>';
   } else if (chosen == 'True') {
-    output += '<form class="form" method="get" action="">';
+    output += '<form name="santa" id="santa" method="get" action="">';
     output += '<input type="hidden" name="npart" value="' + npart + '" />';
     var next = 0;
     for (i = 1; i < cpart; i++) {
@@ -129,7 +129,7 @@ function start() {
     output += '<input type="submit" name="swapped' + cswap + '" value="No"/>';
     output += '</form>';
   }
-  output += '<form class="reset" method="get" action="">';
+  output += '<form name="reset" id="reset" method="get" action="">';
   output += '<input type="submit" value="Reset"/>';
   output += '</form>';
   $( "#main_content" ).html(output);
