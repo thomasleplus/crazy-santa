@@ -67,7 +67,7 @@ function start() {
   if (npart == null) {
     output += '<form name="santa" id="santa" method="get" action="" onsubmit="return validateNPart()">';
     output += '<input type="hidden" name="cpart" id="cpart" value="1" />';
-    output += 'Before we start, write a number for each participant on pieces of paper and ask each participant to blindly draw one of the pieces of paper from a hat. When you are ready, tell me how many people are participating?<br/>';
+    output += 'Before we start, write a number for each participant on pieces of paper and ask each participant to blindly draw one of the pieces of paper from a hat. When you are ready, tell me how many people are participating? ';
     output += '<input type="text" name="npart" id="npart" size="3" />';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
@@ -97,7 +97,7 @@ function start() {
         output += '<input type="hidden" name="cswap" id="cswap" value="' + next + '" />';
         output += '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
     }
-    output += 'Participant #' + cpart + ' may pick a gift and open it.<br/>';
+    output += 'Participant #' + cpart + ' may pick a gift and open it. ';
     output += '<input type="submit" value="Done"/>';
     output += '</form>';
   } else if (chosen == 'True') {
@@ -124,7 +124,7 @@ function start() {
         output += '<input type="hidden" name="cswap" id="cswap" value="' + next + '" />';
         output += '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
     }
-    output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '?<br/>';
+    output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '? ';
     output += '<input type="submit" name="swapped' + cswap + '" id="swapYes" value="Yes"/>';
     output += '<input type="submit" name="swapped' + cswap + '" id="swapNo" value="No"/>';
     output += '</form>';
