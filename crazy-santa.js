@@ -117,6 +117,9 @@ function start() {
     output += '<input type="submit" name="swapped' + cswap + '" value="No"/>';
     output += '</form>';
   }
+  output += '<form class="reset" method="get" action="">';
+  output += '<input type="submit" value="Reset"/>';
+  output += '</form>';
   $( "#main_content" ).html(output);
 }
 
