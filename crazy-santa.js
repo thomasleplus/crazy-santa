@@ -66,9 +66,9 @@ function start() {
   }
   if (npart == null) {
     output += '<form name="santa" id="santa" method="get" action="" onsubmit="return validateNPart()">';
-    output += '<input type="hidden" name="cpart" value="1" />';
+    output += '<input type="hidden" name="cpart" id="cpart" value="1" />';
     output += 'Before we start, write a number for each participant on pieces of paper and ask each participant to blindly draw one of the pieces of paper from a hat. When you are ready, tell me how many people are participating?<br/>';
-    output += '<input type="text" name="npart"/>';
+    output += '<input type="text" name="npart" id="npart"/>';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
   } else if (cpart > npart) {
@@ -77,7 +77,7 @@ function start() {
     output += '</form>';
   } else if (chosen == null || chosen == 'False') {
     output += '<form name="santa" id="santa" method="get" action="">';
-    output += '<input type="hidden" name="npart" value="' + npart + '" />';
+    output += '<input type="hidden" name="npart" id="npart" value="' + npart + '" />';
     var next = 0;
     for (i = 1; i < cpart; i++) {
         var swapped = getParam('swapped' + i);
@@ -87,22 +87,22 @@ function start() {
                 next = i;
             }
         }
-        output += '<input type="hidden" name="swapped' + i + '" value="' + swapped + '" />';
+        output += '<input type="hidden" name="swapped' + i + '" id="swapped' + i + '" value="' + swapped + '" />';
     }
     if (next == 0) {
-        output += '<input type="hidden" name="chosen" value="False" />';
-        output += '<input type="hidden" name="cpart" value="' + (cpart + 1) + '" />';
+        output += '<input type="hidden" name="chosen" id="chosen" value="False" />';
+        output += '<input type="hidden" name="cpart" id="cpart" value="' + (cpart + 1) + '" />';
     } else {
-        output += '<input type="hidden" name="chosen" value="True" />';
-        output += '<input type="hidden" name="cswap" value="' + next + '" />';
-        output += '<input type="hidden" name="cpart" value="' + cpart + '" />';
+        output += '<input type="hidden" name="chosen" id="chosen" value="True" />';
+        output += '<input type="hidden" name="cswap" id="cswap" value="' + next + '" />';
+        output += '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
     }
     output += 'Participant #' + cpart + ' may pick a gift and open it.<br/>';
     output += '<input type="submit" value="Done"/>';
     output += '</form>';
   } else if (chosen == 'True') {
     output += '<form name="santa" id="santa" method="get" action="">';
-    output += '<input type="hidden" name="npart" value="' + npart + '" />';
+    output += '<input type="hidden" name="npart" id="npart" value="' + npart + '" />';
     var next = 0;
     for (i = 1; i < cpart; i++) {
         if (i != cswap) {
@@ -113,20 +113,20 @@ function start() {
                     next = i;
                 }
             }
-            output += '<input type="hidden" name="swapped' + i + '" value="' + swapped + '" />';
+            output += '<input type="hidden" name="swapped' + i + '" id="swapped' + i + '" value="' + swapped + '" />';
         }
     }
     if (next == 0) {
-        output += '<input type="hidden" name="chosen" value="False" />';
-        output += '<input type="hidden" name="cpart" value="' + (cpart + 1) + '" />';
+        output += '<input type="hidden" name="chosen" id="chosen" value="False" />';
+        output += '<input type="hidden" name="cpart" id="cpart" value="' + (cpart + 1) + '" />';
     } else {
-        output += '<input type="hidden" name="chosen" value="True" />';
-        output += '<input type="hidden" name="cswap" value="' + next + '" />';
-        output += '<input type="hidden" name="cpart" value="' + cpart + '" />';
+        output += '<input type="hidden" name="chosen" id="chosen" value="True" />';
+        output += '<input type="hidden" name="cswap" id="cswap" value="' + next + '" />';
+        output += '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
     }
     output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '?<br/>';
-    output += '<input type="submit" name="swapped' + cswap + '" value="Yes"/>';
-    output += '<input type="submit" name="swapped' + cswap + '" value="No"/>';
+    output += '<input type="submit" name="swapped' + cswap + '" id="swapYes" value="Yes"/>';
+    output += '<input type="submit" name="swapped' + cswap + '" id="swapNo" value="No"/>';
     output += '</form>';
   }
   output += '<form name="reset" id="reset" method="get" action="">';
