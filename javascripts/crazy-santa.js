@@ -73,7 +73,7 @@ function start() {
     output += '</form>';
   } else if (cpart > npart) {
     output += '<form name="santa" id="santa" method="get" action="">';
-    output += 'Finally participant #' + npart + ' can swap gift with participant #1.<br/>That\'s all folks!<br/>';
+    output += 'Finally participant #' + npart + ' can swap gift with participant #1. That\'s all folks! ';
     output += '<input type="submit" value="Restart"/>';
     output += '</form>';
   } else if (chosen == null || chosen == 'False') {
