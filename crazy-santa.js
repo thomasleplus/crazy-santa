@@ -67,7 +67,7 @@ function start() {
   if (npart == null) {
     output += '<form name="santa" id="santa" method="get" action="" onsubmit="return validateNPart()">';
     output += '<input type="hidden" name="cpart" id="cpart" value="1" />';
-    output += 'Before we start, write a number for each participant on pieces of paper and ask everyone to blindly draw one of the pieces of paper from a hat. When you are ready, tell me how many people are participating? ';
+    output += 'Before we start, write a number for each participant on pieces of paper and ask everyone to blindly draw one paper from a hat. When you are ready, tell me how many people are participating? ';
     output += '<input type="text" name="npart" id="npart" size="3" />';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
