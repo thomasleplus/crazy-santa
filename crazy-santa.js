@@ -72,8 +72,9 @@ function start() {
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
   } else if (cpart > npart) {
-    output += '<form name="santa" id="santa" method="get" action="">';
+    output += '<form name="restart" id="restart" method="get" action="">';
     output += 'Finally participant #' + npart + ' can swap gift with participant #1.<br/>That\'s all folks!';
+    output += '<input type="submit" value="Restart"/>';
     output += '</form>';
   } else if (chosen == null || chosen == 'False') {
     output += '<form name="santa" id="santa" method="get" action="">';
@@ -99,6 +100,9 @@ function start() {
     }
     output += 'Participant #' + cpart + ' may pick a gift and open it. ';
     output += '<input type="submit" value="Done"/>';
+    output += '</form>';
+    output += '<form name="reset" id="reset" method="get" action="">';
+    output += '<input type="submit" value="Reset"/>';
     output += '</form>';
   } else if (chosen == 'True') {
     output += '<form name="santa" id="santa" method="get" action="">';
@@ -128,10 +132,10 @@ function start() {
     output += '<input type="submit" name="swapped' + cswap + '" id="swapYes" value="Yes"/>';
     output += '<input type="submit" name="swapped' + cswap + '" id="swapNo" value="No"/>';
     output += '</form>';
+    output += '<form name="reset" id="reset" method="get" action="">';
+    output += '<input type="submit" value="Reset"/>';
+    output += '</form>';
   }
-  output += '<form name="reset" id="reset" method="get" action="">';
-  output += '<input type="submit" value="Reset"/>';
-  output += '</form>';
   $( "#main_content" ).html(output);
 }
 
