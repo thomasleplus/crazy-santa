@@ -59,7 +59,7 @@ function start() {
   if (npart == null) {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="cpart" value="1" />';
-    output += 'Before we start, each participant should be assigned a number randomly. You can for example write each number on a piece of paper and have the participants draw the papers from a hat.<br/>When you are ready, tell me how many people are participating? ';
+    output += 'Before we start, each participant should be assigned a number randomly. You can for example write each number on a piece of paper and have the participants draw the papers from a hat. When you are ready, tell me how many people are participating?<br/>';
     output += '<input type="text" name="npart"/>';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
