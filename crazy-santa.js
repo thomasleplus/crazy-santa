@@ -59,12 +59,12 @@ function start() {
   if (npart == null) {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="cpart" value="1" />';
-    output += 'How many people are participating? ';
+    output += 'Before we start, each participant should be assigned a number randomly. You can for example write each number on a piece of paper and have the participants draw the papers from a hat.<br/>How many people are participating? ';
     output += '<input type="text" name="npart"/>';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
   } else if (cpart > npart) {
-    output += 'Finally participant #' + npart + ' can swap gift with participant #1. That\'s all folks!';
+    output += 'Finally participant #' + npart + ' can swap gift with participant #1.<br/>That\'s all folks!';
   } else if (chosen == null || chosen == 'False') {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="npart" value="' + npart + '" />';
