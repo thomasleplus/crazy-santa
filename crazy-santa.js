@@ -87,7 +87,7 @@ function start() {
         output += '<input type="hidden" name="cswap" value="' + next + '" />';
         output += '<input type="hidden" name="cpart" value="' + cpart + '" />';
     }
-    output += 'Participant #' + cpart + ' may pick a gift and open it. ';
+    output += 'Participant #' + cpart + ' may pick a gift and open it.<br/>';
     output += '<input type="submit" value="Done"/>';
     output += '</form>';
   } else if (chosen == 'True') {
@@ -114,7 +114,7 @@ function start() {
         output += '<input type="hidden" name="cswap" value="' + next + '" />';
         output += '<input type="hidden" name="cpart" value="' + cpart + '" />';
     }
-    output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '? ';
+    output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '?<br/>';
     output += '<input type="submit" name="swapped' + cswap + '" value="Yes"/>';
     output += '<input type="submit" name="swapped' + cswap + '" value="No"/>';
     output += '</form>';
