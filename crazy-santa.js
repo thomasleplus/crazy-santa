@@ -41,6 +41,14 @@ function getParam(name) {
     return null;
 }
 
+function validateNPart() {
+    var npart = document.forms["form"]["npart"].value;
+    if (npart == null || !npart.match(/^[1-9][0-9]*$/)) {
+        alert("Please type a valid number of participants!");
+        return false;
+    }
+}
+
 function start() {
   var output = '';
   var npart = getParam('npart');
@@ -57,7 +65,7 @@ function start() {
     cswap = parseInt(cswap);
   }
   if (npart == null) {
-    output += '<form class="form" method="get" action="">';
+    output += '<form class="form" method="get" action="" onsubmit="return validateNPart()">';
     output += '<input type="hidden" name="cpart" value="1" />';
     output += 'Before we start, write a number for each participant on pieces of paper and ask each participant to blindly draw one of the pieces of paper from a hat. When you are ready, tell me how many people are participating?<br/>';
     output += '<input type="text" name="npart"/>';
