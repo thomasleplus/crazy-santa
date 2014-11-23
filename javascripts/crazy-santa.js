@@ -68,11 +68,11 @@ function start() {
     output += '<form name="santa" id="santa" method="get" action="" onsubmit="return validateNPart()">';
     output += '<input type="hidden" name="cpart" id="cpart" value="1" />';
     output += 'Before we start, write a number for each participant on pieces of paper and ask everyone to blindly draw one paper from a hat. When you are ready, tell me how many people are participating? ';
-    output += '<input type="text" name="npart" id="npart" size="3" />';
+    output += '<input type="text" name="npart" id="npart" size="3" />&nsp;';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
   } else if (cpart > npart) {
-    output += '<form name="restart" id="restart" method="get" action="">';
+    output += '<form name="santa" id="santa" method="get" action="">';
     output += 'Finally participant #' + npart + ' can swap gift with participant #1.<br/>That\'s all folks!<br/>';
     output += '<input type="submit" value="Restart"/>';
     output += '</form>';
@@ -101,9 +101,6 @@ function start() {
     output += 'Participant #' + cpart + ' may pick a gift and open it. ';
     output += '<input type="submit" value="Done"/>';
     output += '</form>';
-    output += '<form name="reset" id="reset" method="get" action="">';
-    output += '<input type="submit" value="Reset"/>';
-    output += '</form>';
   } else if (chosen == 'True') {
     output += '<form name="santa" id="santa" method="get" action="">';
     output += '<input type="hidden" name="npart" id="npart" value="' + npart + '" />';
@@ -129,11 +126,8 @@ function start() {
         output += '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
     }
     output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '? ';
-    output += '<input type="submit" name="swapped' + cswap + '" id="swapYes" value="Yes"/>';
+    output += '<input type="submit" name="swapped' + cswap + '" id="swapYes" value="Yes"/>&nbsp;';
     output += '<input type="submit" name="swapped' + cswap + '" id="swapNo" value="No"/>';
-    output += '</form>';
-    output += '<form name="reset" id="reset" method="get" action="">';
-    output += '<input type="submit" value="Reset"/>';
     output += '</form>';
   }
   $( "#main_content" ).html(output);
