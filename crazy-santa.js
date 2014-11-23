@@ -64,7 +64,9 @@ function start() {
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
   } else if (cpart > npart) {
+    output += '<form class="form" method="get" action="">';
     output += 'Finally participant #' + npart + ' can swap gift with participant #1.<br/>That\'s all folks!';
+    output += '</form>';
   } else if (chosen == null || chosen == 'False') {
     output += '<form class="form" method="get" action="">';
     output += '<input type="hidden" name="npart" value="' + npart + '" />';
