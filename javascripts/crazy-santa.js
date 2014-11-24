@@ -120,11 +120,11 @@ function start() {
     }
     if (cswap == 0) {
         output += 'Participant #' + cpart + ' may pick a gift and open it. ';
-        output += '<input type="submit" value="Done" onclick="return clickDone()"/>';
+        output += '<input type="submit" value="Done" onclick="clickDone()"/>';
     } else {
         output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '? ';
-        output += '<input type="submit" value="Yes" onclick="return clickYes()"/>&nbsp;';
-        output += '<input type="submit" value="No" onclick="return clickNo()"/>';
+        output += '<input type="submit" value="Yes" onclick="clickYes()"/>&nbsp;';
+        output += '<input type="submit" value="No" onclick="clickNo()"/>';
     }
     output += '</form>';
   }
