@@ -63,7 +63,7 @@ function validateNPart() {
 
 function findNextSwap(cpart) {
   for (i = cpart - 1; i > 0; i--) {
-    if (document.getElementById('swapped' + i).value == 0) {
+    if (getIntInput('swapped' + i) == 0) {
       return i;
     }
   }
