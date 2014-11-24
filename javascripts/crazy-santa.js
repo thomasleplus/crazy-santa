@@ -41,9 +41,21 @@ function getIntParam(name) {
   return 0;
 }
 
+function getIntInput(name) {
+  var input = document.getElementById(name);
+  if (input == null) {
+    return 0;
+  }
+  var value = input.value;
+  if (value != null && value.match(/^[0-9]+$/)) {
+      return parseInt(value);
+  }
+  return 0;
+}
+
 function validateNPart() {
-  var npart = document.getElementById('npart').value;
-  if (npart == null || !npart.match(/^[1-9][0-9]*$/)) {
+  var npart = getIntInput('npart');
+  if (npart == 0) {
     alert('Please type a valid number of participants!');
     return false;
   }
