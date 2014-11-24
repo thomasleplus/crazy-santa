@@ -27,18 +27,18 @@
  *
  */
 
-function getParam(name) {
+function getIntParam(name) {
     if (window.location.search == null || window.location.search.length == 0) {
-      return null;
+      return 0;
     }
     var params = window.location.search.substring(1).split('&');
     for (var i = 0; i < params.length; i++) {
         var param = params[i].split('=');
-        if (param[0] == name && (param[1] == null || param[1].match(/^[a-zA-Z0-9]*$/))) {
-            return param[1];
+        if (param[0] == name && param[1] != null && param[1].match(/^[0-9]+$/)) {
+            return parseInt(param[1]);
         }
     }
-    return null;
+    return 0;
 }
 
 function validateNPart() {
@@ -49,25 +49,59 @@ function validateNPart() {
     }
 }
 
+function findNextSwap(cpart) {
+  var nswap = 0;
+  for (i = 1; i < cpart; i++) {
+      if (document.getElementById('swapped' + i).value == 0) {
+        nswap = i;
+      }
+    }
+  }
+  return nswap;
+}
+
+function clickDone() {
+  var cpart = document.getElementById('cpart').value;
+  var cswap = document.getElementById('cswap').value;
+  var nswap = findNextSwap(cpart);
+  if (nswap > 0) {
+    document.getElementById('cswap').value = nswap;
+  } else {
+    document.getElementById('cpart').value = cpart + 1;
+    document.getElementById('cswap').value = 0;
+  }
+}
+
+function clickYes() {
+  var cpart = document.getElementById('cpart').value;
+  var cswap = document.getElementById('cswap').value;
+  document.getElementById('swapped' + cswap).value = 1;
+  document.getElementById('cpart').value = cpart + 1;
+  document.getElementById('cswap').value = 0;
+}
+
+function clickNo() {
+  var cpart = document.getElementById('cpart').value;
+  var cswap = document.getElementById('cswap').value;
+  var nswap = findNextSwap(cswap);
+  if (nswap > 0) {
+    document.getElementById('cswap').value = nswap;
+  } else {
+    document.getElementById('cpart').value = cpart + 1;
+    document.getElementById('cswap').value = 0;
+  }
+}
+
 function start() {
   var output = '';
-  var npart = getParam('npart');
-  if (npart != null) {
-    npart = parseInt(npart);
-  }
-  var cpart = getParam('cpart');
-  if (cpart != null) {
-    cpart = parseInt(cpart);
-  }
-  var chosen = getParam('chosen');
-  var cswap = getParam('cswap');
-  if (cswap != null) {
-    cswap = parseInt(cswap);
-  }
-  if (npart == null) {
+  var npart = getIntParam('npart');
+  var cpart = getIntParam('cpart');
+  var cswap = getIntParam('cswap');
+  if (npart == 0) {
     output += '<form name="santa" id="santa" method="get" action="" onsubmit="return validateNPart()">';
-    output += '<input type="hidden" name="cpart" id="cpart" value="1" />';
     output += 'Before we start, write a number for each participant on pieces of paper and ask everyone to blindly draw one paper from a hat. When you are ready, tell me how many people are participating? ';
+    output += '<input type="hidden" name="cpart" id="cpart" value="1" />';
+    output += '<input type="hidden" name="cswap" id="cswap" value="0" />';
     output += '<input type="text" name="npart" id="npart" size="3" />&nbsp;';
     output += '<input type="submit" value="Next"/>';
     output += '</form>';
@@ -76,58 +110,22 @@ function start() {
     output += 'Finally participant #' + npart + ' can swap gift with participant #1. That\'s all folks! ';
     output += '<input type="submit" value="Restart"/>';
     output += '</form>';
-  } else if (chosen == null || chosen == 'False') {
+  } else {
     output += '<form name="santa" id="santa" method="get" action="">';
     output += '<input type="hidden" name="npart" id="npart" value="' + npart + '" />';
-    var next = 0;
+    output += '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
+    output += '<input type="hidden" name="cswap" id="cswap" value="' + cswap + '" />';
     for (i = 1; i < cpart; i++) {
-        var swapped = getParam('swapped' + i);
-        if (swapped == null || swapped != 'Yes') {
-            swapped = 'No';
-            if (i > next) {
-                next = i;
-            }
-        }
-        output += '<input type="hidden" name="swapped' + i + '" id="swapped' + i + '" value="' + swapped + '" />';
+      output += '<input type="hidden" name="swapped' + i + '" id="swapped' + i + '" value="' + getIntParam('swapped' + i) + '" />';
     }
-    if (next == 0) {
-        output += '<input type="hidden" name="chosen" id="chosen" value="False" />';
-        output += '<input type="hidden" name="cpart" id="cpart" value="' + (cpart + 1) + '" />';
+    if (cswap == 0) {
+        output += 'Participant #' + cpart + ' may pick a gift and open it. ';
+        output += '<input type="submit" value="Done" onclick="return clickDone()"/>';
     } else {
-        output += '<input type="hidden" name="chosen" id="chosen" value="True" />';
-        output += '<input type="hidden" name="cswap" id="cswap" value="' + next + '" />';
-        output += '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
+        output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '? ';
+        output += '<input type="submit" value="Yes" onclick="return clickYes()"/>&nbsp;';
+        output += '<input type="submit" value="No" onclick="return clickNo()"/>';
     }
-    output += 'Participant #' + cpart + ' may pick a gift and open it. ';
-    output += '<input type="submit" value="Done"/>';
-    output += '</form>';
-  } else if (chosen == 'True') {
-    output += '<form name="santa" id="santa" method="get" action="">';
-    output += '<input type="hidden" name="npart" id="npart" value="' + npart + '" />';
-    var next = 0;
-    for (i = 1; i < cpart; i++) {
-        if (i != cswap) {
-            var swapped = getParam('swapped' + i);
-            if (swapped == null || swapped != 'Yes') {
-                swapped = 'No';
-                if (i > next && i < cswap) {
-                    next = i;
-                }
-            }
-            output += '<input type="hidden" name="swapped' + i + '" id="swapped' + i + '" value="' + swapped + '" />';
-        }
-    }
-    if (next == 0) {
-        output += '<input type="hidden" name="chosen" id="chosen" value="False" />';
-        output += '<input type="hidden" name="cpart" id="cpart" value="' + (cpart + 1) + '" />';
-    } else {
-        output += '<input type="hidden" name="chosen" id="chosen" value="True" />';
-        output += '<input type="hidden" name="cswap" id="cswap" value="' + next + '" />';
-        output += '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
-    }
-    output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '? ';
-    output += '<input type="submit" name="swapped' + cswap + '" id="swapYes" value="Yes"/>&nbsp;';
-    output += '<input type="submit" name="swapped' + cswap + '" id="swapNo" value="No"/>';
     output += '</form>';
   }
   document.getElementById('main_content').innerHTML = output;
