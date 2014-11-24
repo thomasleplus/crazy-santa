@@ -50,13 +50,12 @@ function validateNPart() {
 }
 
 function findNextSwap(cpart) {
-  var nswap = 0;
-  for (i = 1; i < cpart; i++) {
+  for (i = cpart - 1; i > 0; i--) {
     if (document.getElementById('swapped' + i).value == 0) {
-      nswap = i;
+      return i;
     }
   }
-  return nswap;
+  return 0;
 }
 
 function clickDone() {
