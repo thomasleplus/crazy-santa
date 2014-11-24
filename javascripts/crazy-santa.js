@@ -28,25 +28,25 @@
  */
 
 function getIntParam(name) {
-    if (window.location.search == null || window.location.search.length == 0) {
-      return 0;
-    }
-    var params = window.location.search.substring(1).split('&');
-    for (var i = 0; i < params.length; i++) {
-        var param = params[i].split('=');
-        if (param[0] == name && param[1] != null && param[1].match(/^[0-9]+$/)) {
-            return parseInt(param[1]);
-        }
-    }
+  if (window.location.search == null || window.location.search.length == 0) {
     return 0;
+  }
+  var params = window.location.search.substring(1).split('&');
+  for (var i = 0; i < params.length; i++) {
+    var param = params[i].split('=');
+    if (param[0] == name && param[1] != null && param[1].match(/^[0-9]+$/)) {
+      return parseInt(param[1]);
+    }
+  }
+  return 0;
 }
 
 function validateNPart() {
-    var npart = document.getElementById('npart').value;
-    if (npart == null || !npart.match(/^[1-9][0-9]*$/)) {
-        alert('Please type a valid number of participants!');
-        return false;
-    }
+  var npart = document.getElementById('npart').value;
+  if (npart == null || !npart.match(/^[1-9][0-9]*$/)) {
+    alert('Please type a valid number of participants!');
+    return false;
+  }
 }
 
 function findNextSwap(cpart) {
@@ -118,12 +118,12 @@ function start() {
       output += '<input type="hidden" name="swapped' + i + '" id="swapped' + i + '" value="' + getIntParam('swapped' + i) + '" />';
     }
     if (cswap == 0) {
-        output += 'Participant #' + cpart + ' may pick a gift and open it. ';
-        output += '<input type="submit" value="Done" onclick="clickDone()"/>';
+      output += 'Participant #' + cpart + ' may pick a gift and open it. ';
+      output += '<input type="submit" value="Done" onclick="clickDone()"/>';
     } else {
-        output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '? ';
-        output += '<input type="submit" value="Yes" onclick="clickYes()"/>&nbsp;';
-        output += '<input type="submit" value="No" onclick="clickNo()"/>';
+      output += 'Does participant #' + cswap + ' want to swap gift with participant #' + cpart + '? ';
+      output += '<input type="submit" value="Yes" onclick="clickYes()"/>&nbsp;';
+      output += '<input type="submit" value="No" onclick="clickNo()"/>';
     }
     output += '</form>';
   }
