@@ -52,9 +52,8 @@ function validateNPart() {
 function findNextSwap(cpart) {
   var nswap = 0;
   for (i = 1; i < cpart; i++) {
-      if (document.getElementById('swapped' + i).value == 0) {
-        nswap = i;
-      }
+    if (document.getElementById('swapped' + i).value == 0) {
+      nswap = i;
     }
   }
   return nswap;
