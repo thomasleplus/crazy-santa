@@ -71,8 +71,8 @@ function findNextSwap(cpart) {
 }
 
 function clickDone() {
-  var cpart = document.getElementById('cpart').value;
-  var cswap = document.getElementById('cswap').value;
+  var cpart = getIntInput('cpart');
+  var cswap = getIntInput('cswap');
   var nswap = findNextSwap(cpart);
   if (nswap > 0) {
     document.getElementById('cswap').value = nswap;
@@ -83,16 +83,16 @@ function clickDone() {
 }
 
 function clickYes() {
-  var cpart = document.getElementById('cpart').value;
-  var cswap = document.getElementById('cswap').value;
+  var cpart = getIntInput('cpart');
+  var cswap = getIntInput('cswap');
   document.getElementById('swapped' + cswap).value = 1;
   document.getElementById('cpart').value = cpart + 1;
   document.getElementById('cswap').value = 0;
 }
 
 function clickNo() {
-  var cpart = document.getElementById('cpart').value;
-  var cswap = document.getElementById('cswap').value;
+  var cpart = getIntInput('cpart');
+  var cswap = getIntInput('cswap');
   var nswap = findNextSwap(cswap);
   if (nswap > 0) {
     document.getElementById('cswap').value = nswap;
