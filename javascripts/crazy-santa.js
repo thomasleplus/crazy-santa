@@ -62,7 +62,7 @@ function validateNPart() {
 }
 
 function findNextSwap(cpart) {
-  for (i = cpart - 1; i > 0; i--) {
+  for (var i = cpart - 1; i > 0; i--) {
     if (getIntInput('swapped' + i) == 0) {
       return i;
     }
@@ -125,7 +125,7 @@ function start() {
     output += '<input type="hidden" name="npart" id="npart" value="' + npart + '" />';
     output += '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
     output += '<input type="hidden" name="cswap" id="cswap" value="' + cswap + '" />';
-    for (i = 1; i < cpart; i++) {
+    for (var i = 1; i < cpart; i++) {
       output += '<input type="hidden" name="swapped' + i + '" id="swapped' + i + '" value="' + getIntParam('swapped' + i) + '" />';
     }
     if (cswap == 0) {
