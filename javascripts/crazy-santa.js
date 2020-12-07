@@ -72,7 +72,6 @@ function findNextSwap(cpart) {
 
 function clickDone() {
   var cpart = getIntInput('cpart');
-  var cswap = getIntInput('cswap');
   var nswap = findNextSwap(cpart);
   if (nswap > 0) {
     document.getElementById('cswap').value = nswap;
