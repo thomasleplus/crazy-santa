@@ -6,7 +6,7 @@ function getIntParam(name) {
         return 0;
     }
     params = window.location.search.substring(1).split('&');
-    for (i = 0; i < params.length; i + =1) {
+    for (i = 0; i < params.length; i += 1) {
         param = params[i].split('=');
         if (param[0] === name && param[1] !== null && param[1].match(/^[0-9]+$/)) {
             return parseInt(param[1], 10);
