@@ -8,7 +8,7 @@ function getIntParam(name) {
     params = window.location.search.substring(1).split('&');
     for (i = 0; i < params.length; i++) {
         param = params[i].split('=');
-        if (param[0] == name && param[1] != null && param[1].match(/^[0-9]+$/)) {
+        if (param[0] == name && param[1] !== null && param[1].match(/^[0-9]+$/)) {
             return parseInt(param[1]);
         }
     }
@@ -18,11 +18,11 @@ function getIntParam(name) {
 function getIntInput(name) {
     var value, input;
     input = document.getElementById(name);
-    if (input == null) {
+    if (input === null) {
         return 0;
     }
     value = input.value;
-    if (value != null && value.match(/^[0-9]+$/)) {
+    if (value !== null && value.match(/^[0-9]+$/)) {
         return parseInt(value);
     }
     return 0;
@@ -30,7 +30,7 @@ function getIntInput(name) {
 
 function validateNPart() {
     var npart = getIntInput('npart');
-    if (npart == 0) {
+    if (npart === 0) {
         alert('Please type a valid number of participants!');
         return false;
     }
@@ -38,7 +38,7 @@ function validateNPart() {
 
 function findNextSwap(cpart) {
     for (var i = cpart - 1; i > 0; i--) {
-        if (getIntInput('swapped' + i) == 0) {
+        if (getIntInput('swapped' + i) === 0) {
             return i;
         }
     }
@@ -81,7 +81,7 @@ function start() {
     var npart = getIntParam('npart');
     var cpart = getIntParam('cpart');
     var cswap = getIntParam('cswap');
-    if (npart == 0) {
+    if (npart === 0) {
         output += '<form name="santa" id="santa" method="get" action="" onsubmit="return validateNPart()">';
         output += 'Before we start, write a number for each participant on pieces of paper and ask everyone to blindly draw one paper from a hat. When you are ready, tell me how many people are participating? ';
         output += '<input type="hidden" name="cpart" id="cpart" value="1" />';
@@ -102,7 +102,7 @@ function start() {
         for (var i = 1; i < cpart; i++) {
             output += '<input type="hidden" name="swapped' + i + '" id="swapped' + i + '" value="' + getIntParam('swapped' + i) + '" />';
         }
-        if (cswap == 0) {
+        if (cswap === 0) {
             output += 'Participant #' + cpart + ' may pick a gift and open it. ';
             output += '<input type="submit" value="Done" onclick="clickDone()"/>';
         } else {
