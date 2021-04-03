@@ -1,3 +1,5 @@
+"use strict";
+
 function getIntParam(name) {
   if (window.location.search == null || window.location.search.length == 0) {
     return 0;
