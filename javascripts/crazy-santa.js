@@ -8,8 +8,8 @@ function getIntParam(name) {
     params = window.location.search.substring(1).split('&');
     for (i = 0; i < params.length; i++) {
         param = params[i].split('=');
-        if (param[0] == name && param[1] !== null && param[1].match(/^[0-9]+$/)) {
-            return parseInt(param[1]);
+        if (param[0] === name && param[1] !== null && param[1].match(/^[0-9]+$/)) {
+            return parseInt(param[1], 10);
         }
     }
     return 0;
@@ -23,7 +23,7 @@ function getIntInput(name) {
     }
     value = input.value;
     if (value !== null && value.match(/^[0-9]+$/)) {
-        return parseInt(value);
+        return parseInt(value, 10);
     }
     return 0;
 }
@@ -31,13 +31,14 @@ function getIntInput(name) {
 function validateNPart() {
     var npart = getIntInput('npart');
     if (npart === 0) {
-        alert('Please type a valid number of participants!');
+        window.alert('Please type a valid number of participants!');
         return false;
     }
 }
 
 function findNextSwap(cpart) {
-    for (var i = cpart - 1; i > 0; i--) {
+    var i;
+    for (i = cpart - 1; i > 0; i--) {
         if (getIntInput('swapped' + i) === 0) {
             return i;
         }
@@ -77,6 +78,7 @@ function clickNo() {
 }
 
 function start() {
+    var i;
     var output = '';
     var npart = getIntParam('npart');
     var cpart = getIntParam('cpart');
@@ -99,7 +101,7 @@ function start() {
         output += '<input type="hidden" name="npart" id="npart" value="' + npart + '" />';
         output += '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
         output += '<input type="hidden" name="cswap" id="cswap" value="' + cswap + '" />';
-        for (var i = 1; i < cpart; i++) {
+        for (i = 1; i < cpart; i++) {
             output += '<input type="hidden" name="swapped' + i + '" id="swapped' + i + '" value="' + getIntParam('swapped' + i) + '" />';
         }
         if (cswap === 0) {
