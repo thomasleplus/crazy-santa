@@ -1,12 +1,13 @@
 "use strict";
 
 function getIntParam(name) {
+    var params, param, i;
     if (window.location.search === null || window.location.search.length === 0) {
         return 0;
     }
-    var params = window.location.search.substring(1).split('&');
-    for (var i = 0; i < params.length; i++) {
-        var param = params[i].split('=');
+    params = window.location.search.substring(1).split('&');
+    for (i = 0; i < params.length; i++) {
+        param = params[i].split('=');
         if (param[0] == name && param[1] != null && param[1].match(/^[0-9]+$/)) {
             return parseInt(param[1]);
         }
@@ -15,11 +16,12 @@ function getIntParam(name) {
 }
 
 function getIntInput(name) {
-    var input = document.getElementById(name);
+    var value, input;
+    input = document.getElementById(name);
     if (input == null) {
         return 0;
     }
-    var value = input.value;
+    value = input.value;
     if (value != null && value.match(/^[0-9]+$/)) {
         return parseInt(value);
     }
