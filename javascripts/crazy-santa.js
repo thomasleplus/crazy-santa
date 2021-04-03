@@ -79,8 +79,8 @@ function clickNo() {
 
 function start() {
     var i,
-        output = ''.
-        npart = getIntParam('npart').
+        output = '',
+        npart = getIntParam('npart'),
         cpart = getIntParam('cpart'),
         cswap = getIntParam('cswap');
     if (npart === 0) {
