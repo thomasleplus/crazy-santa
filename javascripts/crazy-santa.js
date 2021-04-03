@@ -47,8 +47,8 @@ function findNextSwap(cpart) {
 }
 
 function clickDone() {
-    var cpart = getIntInput('cpart');
-    var nswap = findNextSwap(cpart);
+    var cpart = getIntInput('cpart'),
+	nswap = findNextSwap(cpart);
     if (nswap > 0) {
         document.getElementById('cswap').value = nswap;
     } else {
@@ -58,17 +58,17 @@ function clickDone() {
 }
 
 function clickYes() {
-    var cpart = getIntInput('cpart');
-    var cswap = getIntInput('cswap');
+    var cpart = getIntInput('cpart'),
+	cswap = getIntInput('cswap');
     document.getElementById('swapped' + cswap).value = 1;
     document.getElementById('cpart').value = cpart + 1;
     document.getElementById('cswap').value = 0;
 }
 
 function clickNo() {
-    var cpart = getIntInput('cpart');
-    var cswap = getIntInput('cswap');
-    var nswap = findNextSwap(cswap);
+    var cpart = getIntInput('cpart'),
+	cswap = getIntInput('cswap'),
+	nswap = findNextSwap(cswap);
     if (nswap > 0) {
         document.getElementById('cswap').value = nswap;
     } else {
@@ -78,11 +78,11 @@ function clickNo() {
 }
 
 function start() {
-    var i;
-    var output = '';
-    var npart = getIntParam('npart');
-    var cpart = getIntParam('cpart');
-    var cswap = getIntParam('cswap');
+    var i,
+	output = ''.
+	npart = getIntParam('npart').
+	cpart = getIntParam('cpart'),
+	cswap = getIntParam('cswap');
     if (npart === 0) {
         output += '<form name="santa" id="santa" method="get" action="" onsubmit="return validateNPart()">';
         output += 'Before we start, write a number for each participant on pieces of paper and ask everyone to blindly draw one paper from a hat. When you are ready, tell me how many people are participating? ';
@@ -117,6 +117,6 @@ function start() {
     document.getElementById('main_content').innerHTML = output;
 }
 
-document.addEventListener('DOMContentLoaded', function(event) { 
+document.addEventListener('DOMContentLoaded', function () { 
     start();
 });
