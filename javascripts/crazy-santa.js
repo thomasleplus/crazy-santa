@@ -43,7 +43,7 @@ function findNextSwap(cpart) {
             return i;
         }
     }
-  return 0;
+    return 0;
 }
 
 function clickDone() {
@@ -117,6 +117,6 @@ function start() {
     document.getElementById('main_content').innerHTML = output;
 }
 
-document.addEventListener('DOMContentLoaded', function () { 
+document.addEventListener('DOMContentLoaded', function () {
     start();
 });
