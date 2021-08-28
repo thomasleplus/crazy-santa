@@ -1,5 +1,4 @@
-Crazy Santa
-===========
+# Crazy Santa
 
 Random gift picking scheme
 
