@@ -1,7 +1,7 @@
 "use strict";
 
 function getIntParam(name) {
-    var params, param, i;
+    let params, param, i;
     if (window.location.search === null || window.location.search.length === 0) {
         return 0;
     }
@@ -16,7 +16,7 @@ function getIntParam(name) {
 }
 
 function getIntInput(name) {
-    var value, input;
+    let value, input;
     input = document.getElementById(name);
     if (input === null) {
         return 0;
@@ -29,7 +29,7 @@ function getIntInput(name) {
 }
 
 function validateNPart() {
-    var npart = getIntInput('npart');
+    let npart = getIntInput('npart');
     if (npart === 0) {
         window.alert('Please type a valid number of participants!');
         return false;
@@ -37,7 +37,7 @@ function validateNPart() {
 }
 
 function findNextSwap(cpart) {
-    var i;
+    let i;
     for (i = cpart - 1; i > 0; i -= 1) {
         if (getIntInput('swapped' + i) === 0) {
             return i;
@@ -47,7 +47,7 @@ function findNextSwap(cpart) {
 }
 
 function clickDone() {
-    var cpart = getIntInput('cpart'),
+    let cpart = getIntInput('cpart'),
         nswap = findNextSwap(cpart);
     if (nswap > 0) {
         document.getElementById('cswap').value = nswap;
@@ -58,7 +58,7 @@ function clickDone() {
 }
 
 function clickYes() {
-    var cpart = getIntInput('cpart'),
+    let cpart = getIntInput('cpart'),
         cswap = getIntInput('cswap');
     document.getElementById('swapped' + cswap).value = 1;
     document.getElementById('cpart').value = cpart + 1;
@@ -66,7 +66,7 @@ function clickYes() {
 }
 
 function clickNo() {
-    var cpart = getIntInput('cpart'),
+    let cpart = getIntInput('cpart'),
         cswap = getIntInput('cswap'),
         nswap = findNextSwap(cswap);
     if (nswap > 0) {
@@ -78,7 +78,7 @@ function clickNo() {
 }
 
 function start() {
-    var i,
+    let i,
         output = '',
         npart = getIntParam('npart'),
         cpart = getIntParam('cpart'),
