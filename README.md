@@ -1,4 +1,3 @@
-
 # Crazy Santa
 
 Random gift picking scheme
