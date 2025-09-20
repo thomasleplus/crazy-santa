@@ -142,7 +142,7 @@ function start() {
     }
     output += "</form>";
   }
-  document.getElementById("main_content").innerHTML = output;
+  document.getElementById("main-content").innerHTML = output;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
