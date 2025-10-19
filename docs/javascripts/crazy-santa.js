@@ -1,13 +1,10 @@
-"use strict";
-
 function getIntParam(name) {
-  var params, param, i;
   if (window.location.search === null || window.location.search.length === 0) {
     return 0;
   }
-  params = window.location.search.substring(1).split("&");
-  for (i = 0; i < params.length; i += 1) {
-    param = params[i].split("=");
+  const params = window.location.search.substring(1).split("&");
+  for (let i = 0; i < params.length; i += 1) {
+    const param = params[i].split("=");
     if (param[0] === name && param[1] !== null && param[1].match(/^[0-9]+$/)) {
       return parseInt(param[1], 10);
     }
@@ -16,22 +13,22 @@ function getIntParam(name) {
 }
 
 function getIntInput(name) {
-  var value, input;
-  input = document.getElementById(name);
+  const input = document.getElementById(name);
   if (input === null) {
     return 0;
   }
-  value = input.value;
-  if (value !== null && value.match(/^[0-9]+$/)) {
+  const value = input.value;
+  if (value?.match(/^[0-9]+$/)) {
     return parseInt(value, 10);
   }
   return 0;
 }
 
-// validateNPart() is used in HTML
+// biome-ignore-start lint/correctness/noUnusedVariables: validateNPart() is used in HTML
 // eslint-disable-next-line no-unused-vars
 function validateNPart() {
-  var npart = getIntInput("npart");
+  // biome-ignore-end lint/correctness/noUnusedVariables: validateNPart() is used in HTML
+  const npart = getIntInput("npart");
   if (npart === 0) {
     window.alert("Please type a valid number of participants!");
     return false;
@@ -39,8 +36,7 @@ function validateNPart() {
 }
 
 function findNextSwap(cpart) {
-  var i;
-  for (i = cpart - 1; i > 0; i -= 1) {
+  for (let i = cpart - 1; i > 0; i -= 1) {
     if (getIntInput("swapped" + i) === 0) {
       return i;
     }
@@ -48,10 +44,11 @@ function findNextSwap(cpart) {
   return 0;
 }
 
-// clickDone() is used in HTML
+// biome-ignore-start lint/correctness/noUnusedVariables: clickDone() is used in HTML
 // eslint-disable-next-line no-unused-vars
 function clickDone() {
-  var cpart = getIntInput("cpart"),
+  // biome-ignore-end lint/correctness/noUnusedVariables: clickDone() is used in HTML
+  const cpart = getIntInput("cpart"),
     nswap = findNextSwap(cpart);
   if (nswap > 0) {
     document.getElementById("cswap").value = nswap;
@@ -61,20 +58,22 @@ function clickDone() {
   }
 }
 
-// clickYes() is used in HTML
+// biome-ignore-start lint/correctness/noUnusedVariables: clickYes() is used in HTML
 // eslint-disable-next-line no-unused-vars
 function clickYes() {
-  var cpart = getIntInput("cpart"),
+  // biome-ignore-end lint/correctness/noUnusedVariables: clickYes() is used in HTML
+  const cpart = getIntInput("cpart"),
     cswap = getIntInput("cswap");
   document.getElementById("swapped" + cswap).value = 1;
   document.getElementById("cpart").value = cpart + 1;
   document.getElementById("cswap").value = 0;
 }
 
-// clickNo() is used in HTML
+// biome-ignore-start lint/correctness/noUnusedVariables: clickNo() is used in HTML
 // eslint-disable-next-line no-unused-vars
 function clickNo() {
-  var cpart = getIntInput("cpart"),
+  // biome-ignore-end lint/correctness/noUnusedVariables: clickNo() is used in HTML
+  const cpart = getIntInput("cpart"),
     cswap = getIntInput("cswap"),
     nswap = findNextSwap(cswap);
   if (nswap > 0) {
@@ -86,11 +85,10 @@ function clickNo() {
 }
 
 function start() {
-  var i,
-    output = "",
-    npart = getIntParam("npart"),
+  const npart = getIntParam("npart"),
     cpart = getIntParam("cpart"),
     cswap = getIntParam("cswap");
+  let output = "";
   if (npart === 0) {
     output +=
       '<form name="santa" id="santa" method="get" action="" onsubmit="return validateNPart()">';
@@ -117,7 +115,7 @@ function start() {
       '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
     output +=
       '<input type="hidden" name="cswap" id="cswap" value="' + cswap + '" />';
-    for (i = 1; i < cpart; i += 1) {
+    for (let i = 1; i < cpart; i += 1) {
       output +=
         '<input type="hidden" name="swapped' +
         i +
@@ -145,6 +143,6 @@ function start() {
   document.getElementById("main-content").innerHTML = output;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   start();
 });
