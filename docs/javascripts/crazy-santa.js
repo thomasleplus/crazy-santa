@@ -37,7 +37,7 @@ function validateNPart() {
 
 function findNextSwap(cpart) {
   for (let i = cpart - 1; i > 0; i -= 1) {
-    if (getIntInput("swapped" + i) === 0) {
+    if (getIntInput(`swapped${i}`) === 0) {
       return i;
     }
   }
@@ -64,7 +64,7 @@ function clickYes() {
   // biome-ignore-end lint/correctness/noUnusedVariables: clickYes() is used in HTML
   const cpart = getIntInput("cpart"),
     cswap = getIntInput("cswap");
-  document.getElementById("swapped" + cswap).value = 1;
+  document.getElementById(`swapped${cswap}`).value = 1;
   document.getElementById("cpart").value = cpart + 1;
   document.getElementById("cswap").value = 0;
 }
@@ -109,12 +109,9 @@ function start() {
     output += "</form>";
   } else {
     output += '<form name="santa" id="santa" method="get" action="">';
-    output +=
-      '<input type="hidden" name="npart" id="npart" value="' + npart + '" />';
-    output +=
-      '<input type="hidden" name="cpart" id="cpart" value="' + cpart + '" />';
-    output +=
-      '<input type="hidden" name="cswap" id="cswap" value="' + cswap + '" />';
+    output += `<input type="hidden" name="npart" id="npart" value="${npart}" />`;
+    output += `<input type="hidden" name="cpart" id="cpart" value="${cpart}" />`;
+    output += `<input type="hidden" name="cswap" id="cswap" value="${cswap}" />`;
     for (let i = 1; i < cpart; i += 1) {
       output +=
         '<input type="hidden" name="swapped' +
@@ -122,11 +119,11 @@ function start() {
         '" id="swapped' +
         i +
         '" value="' +
-        getIntParam("swapped" + i) +
+        getIntParam(`swapped${i}`) +
         '" />';
     }
     if (cswap === 0) {
-      output += "Participant #" + cpart + " may pick a gift and open it. ";
+      output += `Participant #${cpart} may pick a gift and open it. `;
       output += '<input type="submit" value="Done" onclick="clickDone()"/>';
     } else {
       output +=
