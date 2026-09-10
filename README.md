@@ -1,6 +1,6 @@
 # Crazy Santa
 
-Random gift picking scheme
+Random gift picking scheme (variant of the white elephant game).
 
 Live demo at [https://thomasleplus.github.io/crazy-santa/](https://thomasleplus.github.io/crazy-santa/).
 
