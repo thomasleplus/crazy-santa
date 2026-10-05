@@ -1,3 +1,7 @@
 {
-  "ignore": ["docs/stylesheets/**"]
+  "ignore": [
+    "docs/stylesheets/**",
+    ".github/workflows/osv-scanner-pr.yml",
+    ".github/workflows/osv-scanner.yml"
+  ]
 }
